@@ -17,3 +17,17 @@ items.extend(sys.argv[1:])
 
 # Save the updated list back to the file
 save_to_json_file(items, filename)
+
+import json
+
+def save_to_json_file(my_obj, filename):
+    """Save an object to a JSON file."""
+    with open(filename, 'w') as f:
+        json.dump(my_obj, f)
+
+        import json
+
+def load_from_json_file(filename):
+    """Load an object from a JSON file."""
+    with open(filename, 'r') as f:
+        return json.load(f)
