@@ -1,16 +1,18 @@
 #!/usr/bin/python3
-"""A script that takes GitHub credentials."""
+'''use github api to know me'''
 
+import requests
+import sys
+import requests.auth
 
-if __name__ == '__main__':
-    import requests
-    from requests.auth import HTTPBasicAuth
-    import sys
-
-    url = 'https://api.github.com/user'
-    user = sys.argv[1]
-    xyz = sys.argv[2]
-    authori = HTTPBasicAuth(username=user, password=xyz)
-    response = requests.get(url, auth=authori)
-    result = response.json()
-    print(result.get('id'))
+if __name__ == "__main__":
+    username = sys.argv[1]
+    password = sys.argv[2]
+    basic = requests.auth.HTTPBasicAuth(username, password)
+    response = requests.get(
+        'https://api.github.com/user', auth=basic)
+    try:
+        json_response = response.json()
+        print("{}".format(json_response["id"]))
+    except:
+        print(None)
